@@ -2811,7 +2811,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3329,8 +3329,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326, y: -268}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 644.37354, y: -475}
+  m_SizeDelta: {x: 413.253, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2340760275928308761
 MonoBehaviour:
@@ -3396,8 +3396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -406, y: 266}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -585.09, y: 492}
+  m_SizeDelta: {x: 698.144, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5454014200522615168
 CanvasRenderer:
@@ -3472,8 +3472,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3561,8 +3561,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3645,8 +3645,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -406, y: -268}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -551.01196, y: -471}
+  m_SizeDelta: {x: 771.976, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7419872621251258085
 MonoBehaviour:
@@ -3695,8 +3695,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

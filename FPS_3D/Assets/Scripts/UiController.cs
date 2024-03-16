@@ -9,16 +9,19 @@ public class UiController : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
+    [SerializeField] TMP_Text firemodeText;
 
     int scoreTotal;
     int healthTotal;
 
     public int ammoTotal;
     public bool canShoot = true;
+    public string firemode = "semiAuto";
 
     private void Start()
     {
         ammoText.text = $"Ammo: {ammoTotal}";
+        firemodeText.text = $"Firemode: {firemode}";
     }
 
     public void updateScoreText(int score)
@@ -37,5 +40,10 @@ public class UiController : MonoBehaviour
     {
         ammoTotal -= ammo;
         ammoText.text = $"Ammo: {ammoTotal}";
+    }
+
+    public void UpdateFiremodeText()
+    {
+        firemodeText.text = $"Firemode: {firemode}";
     }
 }

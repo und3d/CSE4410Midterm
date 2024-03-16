@@ -5,12 +5,12 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     public UiController uiController;
+    
+    Camera cam;
 
     public float fireRate;
 
     float fireTime = 0;
-
-    Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +25,44 @@ public class RayShooter : MonoBehaviour
     void Update()
     {
         fireTime -= Time.deltaTime;
-
-        if (Input.GetMouseButton(0) && fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot)
+        if (uiController.firemode == "fullAuto")
         {
-            Shoot();
+            if (Input.GetMouseButton(0))
+            {
+                if (fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot) 
+                {
+                    Shoot();
 
-            fireTime = fireRate;
+                    fireTime = fireRate;
+                }
+                else
+                {
+                    Debug.Log("Can't shoot for some reason");
+                }
+            }
+        }
+        else if (uiController.firemode == "semiAuto") {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (uiController.ammoTotal > 0 && uiController.canShoot) 
+                {
+                    Shoot();
+                }
+                else
+                {
+                    Debug.Log("Can't shoot for some reason");
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Firemode not set properly");
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            uiController.canShoot = false;
+            Invoke("ChangeFireMode", 0.1f);
         }
     }
 
@@ -83,5 +115,20 @@ public class RayShooter : MonoBehaviour
                 StartCoroutine(SphereIndicator(hit.point));
             }
         }
+    }
+
+    void ChangeFireMode()
+    {
+        if (uiController.firemode == "semiAuto")
+        {
+            uiController.firemode = "fullAuto";
+            uiController.UpdateFiremodeText();
+        }
+        else
+        {
+            uiController.firemode = "semiAuto";
+            uiController.UpdateFiremodeText();
+        }
+        uiController.canShoot = true;
     }
 }

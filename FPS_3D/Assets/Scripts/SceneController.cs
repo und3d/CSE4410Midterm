@@ -6,8 +6,10 @@ public class SceneController : MonoBehaviour
 {
 
     [SerializeField] GameObject enemyPrefab;
+    [SerializeField] UiController uiController;
 
     GameObject enemy;
+    bool isReloading = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +27,35 @@ public class SceneController : MonoBehaviour
             float angle = Random.Range(0, 360);
             enemy.transform.Rotate(0, angle, 0);
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && uiController.ammoTotal < 31)
+        {
+            uiController.canShoot = false;
+            isReloading = true;
+            if (uiController.ammoTotal == 0)
+            {
+                Invoke("Reload", 2.5f);
+            }
+            else
+            {
+                Invoke("Reload", 2f);
+            }
+        }
+    }
+
+    void Reload()
+    {
+        if (uiController.ammoTotal == 0)
+        {
+            uiController.ammoTotal = 30;
+            uiController.UpdateAmmoText(0);
+        }
+        else
+        {
+            uiController.ammoTotal = 31;
+            uiController.UpdateAmmoText(0);
+        }
+        uiController.canShoot = true;
+        isReloading = false;
     }
 }

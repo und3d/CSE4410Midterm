@@ -5,8 +5,12 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     public UiController uiController;
-
+    
     Camera cam;
+
+    public float fireRate;
+
+    float fireTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,30 +24,45 @@ public class RayShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        fireTime -= Time.deltaTime;
+        if (uiController.firemode == "fullAuto")
         {
-            uiController.UpdateAmmoText(1);
-
-            Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
-
-            Ray ray = cam.ScreenPointToRay(point);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButton(0))
             {
-                GameObject hitObject = hit.transform.gameObject;
-                ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+                if (fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot) 
+                {
+                    Shoot();
 
-                if (target != null) 
+                    fireTime = fireRate;
+                }
+                else
                 {
-                    //Debug.Log("Target hit!");
-                    target.ReactToHit();
-                } else
-                {
-                    StartCoroutine(SphereIndicator(hit.point));
+                    Debug.Log("Can't shoot for some reason");
                 }
             }
+        }
+        else if (uiController.firemode == "semiAuto") {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (uiController.ammoTotal > 0 && uiController.canShoot) 
+                {
+                    Shoot();
+                }
+                else
+                {
+                    Debug.Log("Can't shoot for some reason");
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Firemode not set properly");
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            uiController.canShoot = false;
+            Invoke("ChangeFireMode", 0.1f);
         }
     }
 
@@ -69,5 +88,47 @@ public class RayShooter : MonoBehaviour
         float posY = cam.pixelHeight / 2 - size / 2;
 
         GUI.Label(new Rect(posX, posY, size, size), "+");
+    }
+
+    void Shoot()
+    {
+        uiController.UpdateAmmoText(1);
+
+        Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
+
+        Ray ray = cam.ScreenPointToRay(point);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+
+            if (target != null)
+            {
+                //Debug.Log("Target hit!");
+                target.ReactToHit();
+            }
+            else
+            {
+                StartCoroutine(SphereIndicator(hit.point));
+            }
+        }
+    }
+
+    void ChangeFireMode()
+    {
+        if (uiController.firemode == "semiAuto")
+        {
+            uiController.firemode = "fullAuto";
+            uiController.UpdateFiremodeText();
+        }
+        else
+        {
+            uiController.firemode = "semiAuto";
+            uiController.UpdateFiremodeText();
+        }
+        uiController.canShoot = true;
     }
 }

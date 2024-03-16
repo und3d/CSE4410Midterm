@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RayShooter : MonoBehaviour
 {
+    public UiController uiController;
+
     Camera cam;
 
     // Start is called before the first frame update
@@ -20,6 +22,8 @@ public class RayShooter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            uiController.UpdateAmmoText(1);
+
             Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
 
             Ray ray = cam.ScreenPointToRay(point);

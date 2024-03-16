@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb822279647c301409f555620649d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 1
+  uiController: {fileID: 6508097228011035740, guid: df676095d7268ce418b1775a76c72a49, type: 3}
 --- !u!114 &7457554662904602665
 MonoBehaviour:
   m_ObjectHideFlags: 0

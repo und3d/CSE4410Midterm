@@ -6,6 +6,10 @@ public class RayShooter : MonoBehaviour
 {
     public UiController uiController;
 
+    public float fireRate;
+
+    float fireTime = 0;
+
     Camera cam;
 
     // Start is called before the first frame update
@@ -20,30 +24,13 @@ public class RayShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        fireTime -= Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot)
         {
-            uiController.UpdateAmmoText(1);
+            Shoot();
 
-            Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
-
-            Ray ray = cam.ScreenPointToRay(point);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                GameObject hitObject = hit.transform.gameObject;
-                ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
-
-                if (target != null) 
-                {
-                    //Debug.Log("Target hit!");
-                    target.ReactToHit();
-                } else
-                {
-                    StartCoroutine(SphereIndicator(hit.point));
-                }
-            }
+            fireTime = fireRate;
         }
     }
 
@@ -69,5 +56,32 @@ public class RayShooter : MonoBehaviour
         float posY = cam.pixelHeight / 2 - size / 2;
 
         GUI.Label(new Rect(posX, posY, size, size), "+");
+    }
+
+    void Shoot()
+    {
+        uiController.UpdateAmmoText(1);
+
+        Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
+
+        Ray ray = cam.ScreenPointToRay(point);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
+
+            if (target != null)
+            {
+                //Debug.Log("Target hit!");
+                target.ReactToHit();
+            }
+            else
+            {
+                StartCoroutine(SphereIndicator(hit.point));
+            }
+        }
     }
 }

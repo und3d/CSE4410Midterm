@@ -14,6 +14,7 @@ public class UiController : MonoBehaviour
     int healthTotal;
 
     public int ammoTotal;
+    public bool canShoot = true;
 
     private void Start()
     {

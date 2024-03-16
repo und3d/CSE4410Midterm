@@ -1293,6 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1611411963307545687, guid: d392c2329fa796140a01420702ff3f61, type: 3}
+  uiController: {fileID: 2340760275928308761}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 2340760275928308761}
+  fireRate: 0.1
 --- !u!1 &1056413894
 GameObject:
   m_ObjectHideFlags: 0

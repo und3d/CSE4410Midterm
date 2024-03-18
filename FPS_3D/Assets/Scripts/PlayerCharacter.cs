@@ -20,7 +20,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             Debug.Log("You lose!");
 
-            gameObject.SetActive(false);
+            Application.Quit();
         }
     }
 

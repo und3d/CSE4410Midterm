@@ -4,33 +4,41 @@ using UnityEngine;
 
 public class FPSInput : MonoBehaviour
 {
-
     public float speed = 3.0f;
     public float gravity = -9.8f;
+    public float jumpSpeed = 7.5f;
     private CharacterController charController;
+    private float verticalSpeed = 0; // track vertical speed separately
 
-    // Start is called before the first frame update
     void Start()
     {
         charController = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         float deltaZ = Input.GetAxis("Vertical") * speed;
-
         Vector3 movement = new Vector3(deltaX, 0, deltaZ);
-
         movement = Vector3.ClampMagnitude(movement, speed);
 
-        movement.y = gravity;
+        if (charController.isGrounded)
+        {
+            verticalSpeed = 0; // reset vertical speed upon landing
+            if (Input.GetButtonDown("Jump"))
+            {
+                verticalSpeed = jumpSpeed;
+            }
+        }
+        else
+        {
+            verticalSpeed += gravity * Time.deltaTime;
+        }
+        movement.y = verticalSpeed; // apply vertical speed 
 
         movement *= Time.deltaTime;
 
         movement = transform.TransformDirection(movement);
-
         charController.Move(movement);
     }
 }

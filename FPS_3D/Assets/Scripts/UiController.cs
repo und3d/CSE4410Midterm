@@ -29,6 +29,19 @@ public class UiController : MonoBehaviour
         scoreTotal += score;
 
         scoreText.text = $"Score: {scoreTotal}";
+
+        // Check if the score reaches 3
+        if (scoreTotal >= 3)
+        {
+            // Call a method to announce the win
+            AnnounceWin();
+        }
+    }
+
+    void AnnounceWin()
+    {
+        
+        Debug.Log("You win!");
     }
 
     public void UpdateHealthText(int health)

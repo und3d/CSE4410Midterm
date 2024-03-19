@@ -22,22 +22,22 @@ public class FPSInput : MonoBehaviour
         Vector3 movement = new Vector3(deltaX, 0, deltaZ);
         movement = Vector3.ClampMagnitude(movement, speed);
 
+        // checks if player os on the ground
         if (charController.isGrounded)
         {
-            verticalSpeed = 0; // reset vertical speed upon landing
+            verticalSpeed = gravity * Time.deltaTime; 
             if (Input.GetButtonDown("Jump"))
             {
-                verticalSpeed = jumpSpeed;
+                verticalSpeed = jumpSpeed; // apply jump force
             }
         }
         else
         {
-            verticalSpeed += gravity * Time.deltaTime;
+            verticalSpeed += gravity * Time.deltaTime; // apply gravity while in air
         }
-        movement.y = verticalSpeed; // apply vertical speed 
 
+        movement.y = verticalSpeed;
         movement *= Time.deltaTime;
-
         movement = transform.TransformDirection(movement);
         charController.Move(movement);
     }

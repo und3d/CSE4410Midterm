@@ -18,7 +18,7 @@ public class ReactiveTarget : MonoBehaviour
         WanderingAI behavior = GetComponent<WanderingAI>();
         if (behavior != null)
         {
-            behavior.SetAlive(false);
+            behavior.TakeDamage();
         }
 
         StartCoroutine(Die());

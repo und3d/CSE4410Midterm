@@ -68,9 +68,22 @@ public class WanderingAI : MonoBehaviour
         }
     }
 
-
-    public void SetAlive(bool alive)
+    public void TakeDamage()
     {
-        isAlive = alive;
+        if (isAlive)
+        {
+            isAlive = false;
+            Explode(); // Call Explode method when shot at
+        }
+    }
+
+    void Explode()
+    {
+        if (explosion == null && explosionFirePrefab != null)
+        {
+            explosion = Instantiate(explosionFirePrefab, transform.position + Vector3.up, Quaternion.identity);
+            Destroy(explosion, 3.0f); // Destroy the explosion effect after 3 seconds
+            Destroy(gameObject); // Destroy the car enemy
+        }
     }
 }

@@ -135,9 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f409ee8845d1640b93d094c5478c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 5662082458141415817, guid: e847765f31cfc4b46aaed966e44b0fb5, type: 3}
   explosionFirePrefab: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
   speed: 3
   obstacleRange: 5
+  detectionRange: 10
 --- !u!1 &4010858985635880423
 GameObject:
   m_ObjectHideFlags: 0

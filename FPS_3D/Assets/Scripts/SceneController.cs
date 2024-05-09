@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
 
     GameObject enemy;
     bool isReloading = false;
+    public bool spawnCar = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy == null)
+        if (enemy == null && spawnCar)
         {
             enemy = Instantiate(enemyPrefab) as GameObject;
             enemy.transform.position = new Vector3 (0, 0.11f, 0);

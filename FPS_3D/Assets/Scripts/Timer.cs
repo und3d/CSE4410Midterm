@@ -1,44 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public Text timerText;
-    private float startTime;
-    private bool timerRunning;
+    [SerializeField] TextMeshProUGUI timerText;
+    float elapsedTime;
 
+    // Start is called before the first frame update
     void Start()
     {
-        timerRunning = false;
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (timerRunning)
-        {
-            float t = Time.time - startTime;
-
-            string minutes = ((int)t / 60).ToString("00");
-            string seconds = (t % 60).ToString("00");
-
-            timerText.text = minutes + ":" + seconds;
-        }
-    }
-
-    public void StartTimer()
-    {
-        startTime = Time.time;
-        timerRunning = true;
-    }
-
-    public void StopTimer()
-    {
-        timerRunning = false;
-    }
-
-    public void ResetTimer()
-    {
-        timerText.text = "00:00";
-        timerRunning = false;
+        elapsedTime += Time.deltaTime;
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        timerText.text= string.Format("{0:00}:{1:00}", minutes, seconds);
+        
     }
 }

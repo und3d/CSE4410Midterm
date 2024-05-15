@@ -5,10 +5,10 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
 
-    [SerializeField] GameObject enemyPrefab;
+    //[SerializeField] GameObject enemyPrefab;
     [SerializeField] UiController uiController;
 
-    GameObject enemy;
+    //GameObject enemy;
     bool isReloading = false;
 
     // Start is called before the first frame update
@@ -20,13 +20,13 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy == null)
+        /*if (enemy == null)
         {
             enemy = Instantiate(enemyPrefab) as GameObject;
             enemy.transform.position = new Vector3 (0, 0.11f, 0);
             float angle = Random.Range(0, 360);
             enemy.transform.Rotate(0, angle, 0);
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && uiController.ammoTotal < 31)
         {

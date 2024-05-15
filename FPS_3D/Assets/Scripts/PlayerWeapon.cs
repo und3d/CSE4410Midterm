@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class RayShooter : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;

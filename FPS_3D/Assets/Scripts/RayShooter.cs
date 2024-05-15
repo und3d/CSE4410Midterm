@@ -5,6 +5,7 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     public UiController uiController;
+    public AudioSource gunSound;
 
     Camera cam;
 
@@ -121,6 +122,8 @@ public class RayShooter : MonoBehaviour
                 StartCoroutine(SphereIndicator(hit.point));
             }
         }
+
+        gunSound.Play();
     }
 
     void ChangeFireMode()

@@ -9945,8 +9945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  sensH: 4
-  sensV: 4
+  sensH: 3
+  sensV: 3
   minV: -45
   maxV: 45
 --- !u!143 &340172636

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public string sceneName;
+    public GameObject MainMenu;
+    public GameObject SettingsMenu;
 
     public void StartClicked()
     {
@@ -15,5 +17,17 @@ public class MenuController : MonoBehaviour
     public void QuitCLicked()
     {
         Application.Quit();
+    }
+
+    public void BackClicked()
+    {
+        SettingsMenu.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+
+    public void SettingsClicked()
+    {
+        SettingsMenu.SetActive(true);
+        MainMenu.SetActive(false);
     }
 }

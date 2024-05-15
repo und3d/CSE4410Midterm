@@ -21,7 +21,13 @@ public class Timer : MonoBehaviour
     void Awake()
     {
         elapsedTime = 0;
-        
+
+        highscoreTime = PlayerPrefs.GetFloat("SavedFastestTime");
+        minutesElapsed = Mathf.FloorToInt(highscoreTime / 60);
+        secondsElapsed = Mathf.FloorToInt(highscoreTime % 60);
+        centiSecondsElapsed = Mathf.FloorToInt((highscoreTime % 1f) * 100);
+        fastestTimeText.text = string.Format("Fastest Time: {0:00}:{1:00}:{2:00}", minutesElapsed, secondsElapsed, centiSecondsElapsed);
+
     }
 
     // Update is called once per frame

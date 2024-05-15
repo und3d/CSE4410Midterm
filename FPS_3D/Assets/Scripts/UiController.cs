@@ -7,12 +7,10 @@ using UnityEngine.SocialPlatforms.Impl;
 public class UiController : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreText;
-    [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] TMP_Text firemodeText;
 
     int scoreTotal;
-    int healthTotal;
 
     public int ammoTotal;
     public bool canShoot = true;
@@ -42,11 +40,6 @@ public class UiController : MonoBehaviour
     {
         
         Debug.Log("You win!");
-    }
-
-    public void UpdateHealthText(int health)
-    {
-        healthText.text = $"Heath: {health}";
     }
 
     public void UpdateAmmoText(int ammo)

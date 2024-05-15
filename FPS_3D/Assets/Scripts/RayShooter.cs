@@ -103,14 +103,8 @@ public class RayShooter : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             GameObject hitObject = hit.transform.gameObject;
-            ReactiveTarget carEnemy = hitObject.GetComponent<ReactiveTarget>();
             TargetController targetEnemy = hitObject.GetComponent<TargetController>();
 
-            if (carEnemy != null)
-            {
-                //Debug.Log("Target hit!");
-                carEnemy.ReactToHit();
-            }
             if (targetEnemy != null)
             {
                 targetEnemy.ReactToHit();

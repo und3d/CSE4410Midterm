@@ -7,6 +7,7 @@ public class TargetController : MonoBehaviour
     public int score = 1;
     public UiController uiController;
     public GameObject targetPivot;
+    public GameObject explosionPrefab;
 
     bool canBeHit = true;
 
@@ -22,7 +23,7 @@ public class TargetController : MonoBehaviour
             return;
         }
 
-
+        Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
         LowerTarget();
     }
 

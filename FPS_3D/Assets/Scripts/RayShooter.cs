@@ -5,7 +5,8 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     public UiController uiController;
-    
+    public AudioSource gunSound;
+
     Camera cam;
 
     public float fireRate;
@@ -29,7 +30,7 @@ public class RayShooter : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot) 
+                if (fireTime <= 0 && uiController.ammoTotal > 0 && uiController.canShoot)
                 {
                     Shoot();
 
@@ -41,10 +42,11 @@ public class RayShooter : MonoBehaviour
                 }
             }
         }
-        else if (uiController.firemode == "semiAuto") {
+        else if (uiController.firemode == "semiAuto")
+        {
             if (Input.GetMouseButtonDown(0))
             {
-                if (uiController.ammoTotal > 0 && uiController.canShoot) 
+                if (uiController.ammoTotal > 0 && uiController.canShoot)
                 {
                     Shoot();
                 }
@@ -109,11 +111,13 @@ public class RayShooter : MonoBehaviour
             {
                 targetEnemy.ReactToHit();
             }
-        else
-        {
-            StartCoroutine(SphereIndicator(hit.point));
+            else
+            {
+                StartCoroutine(SphereIndicator(hit.point));
+            }
         }
-        }
+
+        gunSound.Play();
     }
 
     void ChangeFireMode()
@@ -131,3 +135,4 @@ public class RayShooter : MonoBehaviour
         uiController.canShoot = true;
     }
 }
+

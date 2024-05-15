@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
 
     //GameObject enemy;
     bool isReloading = false;
+    public bool spawnCar = false;
 
     // Start is called before the first frame update
     void Start()

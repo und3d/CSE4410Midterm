@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 783641153906123002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -237,3 +237,4 @@ MonoBehaviour:
   score: 1
   uiController: {fileID: 0}
   targetPivot: {fileID: 1912373628153898704}
+  explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}

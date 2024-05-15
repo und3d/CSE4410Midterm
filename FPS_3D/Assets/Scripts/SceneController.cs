@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-
-    //[SerializeField] GameObject enemyPrefab;
     [SerializeField] UiController uiController;
+    public List<GameObject> targetList = new List<GameObject>();
+    public List<bool> targetBoolList = new List<bool>();
 
-    //GameObject enemy;
     bool isReloading = false;
-    public bool spawnCar = false;
+    public bool courseComplete = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        int i = 0;
+        foreach (GameObject target in targetList)
+        {
+            target.GetComponentInChildren<TargetController>().objectID = i;
+            i++;
+            targetBoolList.Add(target);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (enemy == null)
-        {
-            enemy = Instantiate(enemyPrefab) as GameObject;
-            enemy.transform.position = new Vector3 (0, 0.11f, 0);
-            float angle = Random.Range(0, 360);
-            enemy.transform.Rotate(0, angle, 0);
-        }*/
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && uiController.ammoTotal < 31)
         {

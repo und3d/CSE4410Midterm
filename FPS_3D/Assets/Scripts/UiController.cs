@@ -6,11 +6,12 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class UiController : MonoBehaviour
 {
-    [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text remainingTargets;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] TMP_Text firemodeText;
+    [SerializeField] SceneController sceneController;
 
-    int scoreTotal;
+    public int standingTargets;
 
     public int ammoTotal;
     public bool canShoot = true;
@@ -20,20 +21,14 @@ public class UiController : MonoBehaviour
     {
         ammoText.text = $"Ammo: {ammoTotal}";
         firemodeText.text = $"Firemode: {firemode}";
+        standingTargets = 0;
     }
 
-    public void updateScoreText(int score)
+    public void updateRemainingTargetsText(int targetDropped)
     {
-        scoreTotal += score;
+        standingTargets -= targetDropped;
 
-        scoreText.text = $"Score: {scoreTotal}";
-
-        // Check if the score reaches 3
-        if (scoreTotal >= 3)
-        {
-            // Call a method to announce the win
-            AnnounceWin();
-        }
+        remainingTargets.text = $"Targets Remaining: {standingTargets}";
     }
 
     void AnnounceWin()

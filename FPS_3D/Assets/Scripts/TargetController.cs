@@ -5,15 +5,19 @@ using UnityEngine;
 public class TargetController : MonoBehaviour
 {
     public int score = 1;
+    public SceneController sceneController;
     public UiController uiController;
     public GameObject targetPivot;
     public GameObject explosionPrefab;
 
-    bool canBeHit = true;
+    bool canBeHit = false;
+    public int objectID = -1;
 
-    private void Start()
+    private void Awake()
     {
+        sceneController = FindObjectOfType<SceneController>();
         uiController = FindObjectOfType<UiController>();
+        targetPivot.transform.Rotate(90, 0, 0);
     }
 
     public void ReactToHit()
@@ -31,10 +35,28 @@ public class TargetController : MonoBehaviour
     {
         canBeHit = false;
         targetPivot.transform.Rotate(90, 0, 0);
-        if (uiController != null)
+
+        if (sceneController == null || uiController == null)
         {
-            uiController.updateScoreText(score);
+            Debug.LogError("Object of SceneController or UiController not found");
+            return;
         }
 
+        sceneController.targetBoolList[objectID] = false;
+        uiController.updateRemainingTargetsText(1);
+    }
+
+    public void RaiseTarget()
+    {
+        targetPivot.transform.Rotate(-90, 0, 0);
+        canBeHit = true;
+
+        if (sceneController == null)
+        {
+            Debug.LogError("Object of SceneController not found");
+            return;
+        }
+
+        sceneController.targetBoolList[objectID] = true;
     }
 }

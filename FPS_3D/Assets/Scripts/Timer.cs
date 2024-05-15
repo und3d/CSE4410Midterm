@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedFastestTime"))
         {
             //is new time faster than saved time?
-            if (elapsedTime > PlayerPrefs.GetFloat("SavedFastestTime"))
+            if (elapsedTime < PlayerPrefs.GetFloat("SavedFastestTime"))
             {
                 //Set a new fastest time
                 PlayerPrefs.SetFloat("SavedFastestTime", elapsedTime);
@@ -59,12 +59,12 @@ public class Timer : MonoBehaviour
         minutesElapsed = Mathf.FloorToInt(elapsedTime / 60);
         secondsElapsed = Mathf.FloorToInt(elapsedTime % 60);
         centiSecondsElapsed = Mathf.FloorToInt((elapsedTime % 1f) * 100);
-        finalTimeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutesElapsed, secondsElapsed, centiSecondsElapsed);
+        finalTimeText.text = string.Format("Final Time: {0:00}:{1:00}:{2:00}", minutesElapsed, secondsElapsed, centiSecondsElapsed);
 
         highscoreTime = PlayerPrefs.GetFloat("SavedFastestTime");
         minutesElapsed = Mathf.FloorToInt(highscoreTime / 60);
         secondsElapsed = Mathf.FloorToInt(highscoreTime % 60);
         centiSecondsElapsed = Mathf.FloorToInt((highscoreTime % 1f) * 100);
-        fastestTimeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutesElapsed, secondsElapsed, centiSecondsElapsed);
+        fastestTimeText.text = string.Format("Fastest Time: {0:00}:{1:00}:{2:00}", minutesElapsed, secondsElapsed, centiSecondsElapsed);
     }
 }

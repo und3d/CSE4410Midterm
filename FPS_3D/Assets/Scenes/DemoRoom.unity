@@ -1293,7 +1293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba001eba2190fc4dacb84161131b26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1611411963307545687, guid: d392c2329fa796140a01420702ff3f61, type: 3}
   uiController: {fileID: 2340760275928308761}
   spawnCar: 0
 --- !u!82 &785111453
@@ -3650,6 +3649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Target
       objectReference: {fileID: 0}
+    - target: {fileID: 6218392161185369255, guid: 8f50a2d715ff473439c080210432f817, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 2340760275928308761}
     - target: {fileID: 6946330397117606127, guid: 8f50a2d715ff473439c080210432f817, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1099998

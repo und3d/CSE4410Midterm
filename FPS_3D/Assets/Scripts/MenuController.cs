@@ -9,6 +9,11 @@ public class MenuController : MonoBehaviour
     public GameObject MainMenu;
     public GameObject SettingsMenu;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
     public void StartClicked()
     {
         SceneManager.LoadScene(sceneName);

@@ -1,39 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class PlayerWeapon : MonoBehaviour {
+public class RayShooter : MonoBehaviour
+{
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
+    public float bulletSpeed = 30;
+    public float lifeTime = 3;
+    public AudioSource gunSound; // Reference to the AudioSource
+    public GameObject explosionPrefab; // Reference to the explosion prefab
 
-     public GameObject bulletPrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
-        public Transform  bulletSpawn;
-
-        public float bulletSpeed = 30;
-
-        public float lifeTime = 3;
-
-        void Update () 
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-             {
-                Fire();
-            }
+            Shoot();
         }
-        private void Fire()
+    }
+
+    void Shoot()
+    {
+        // Play the gun sound effect
+        if (gunSound != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab); 
-            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), bulletSpawn.parent.GetComponent<Collider>());
-            bullet.transform.position = bulletSpawn.position;
-            Vector3 rotation = bullet.transform.rotation.eulerAngles;
-            bullet.transform.rotation = Quaternion.Euler(rotation.x, transform.eulerAngles.y, rotation.z);
-            bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward * bulletSpeed, ForceMode.Impulse);
-            StartCoroutine(DestroyBulletAfterTime(bullet, lifeTime));
+            gunSound.Play();
         }
-            private IEnumerator DestroyBulletAfterTime(GameObject bullet, float delay)
-            {
-                yield return new WaitForSeconds(delay);
-                Destroy(bullet);
-            }
+        else
+        {
+            Debug.LogWarning("Gun sound AudioSource is not assigned!");
         }
-        // Remove the unexpected preprocessor directive
-        // #endregion
+
+        // Instantiate bullet
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = bulletSpawn.position;
+        bullet.transform.rotation = bulletSpawn.rotation;
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawn.forward * bulletSpeed;
+
+        // Destroy the bullet after a certain time
+        Destroy(bullet, lifeTime);
+    }
+
+    // Called when a bullet hits an object
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collision is with an enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Instantiate explosion effect
+            Instantiate(explosionPrefab, collision.contacts[0].point, Quaternion.identity);
+
+            // Play sound effect
+            // Add code to play the sound effect here
+        }
+    }
+}
